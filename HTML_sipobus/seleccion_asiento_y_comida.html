@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../imagenes_sipobus/logo_sipobus.png" type="logo_sipobus">
+  <link rel="stylesheet" href="/styles_sipobus/seleccion_asiento_y_comida.css">
+  <title>Seleccionar asientos - SipoBus</title>
+</head>
+<body>
+  <header>
+    <div class="contenedor-header">
+      <h1 class="titulo-sipobus">SipoBus</h1>
+      <nav>
+        <a href="inicio.html">Inicio</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="comprar-main">
+    <h2>Seleccione sus asientos</h2>
+
+    <div class="asientos-container" id="asientos">
+    </div>
+
+    <div class="legend-container">
+      <div class="legend-item"><div class="legend-color normal"></div> Normal</div>
+      <div class="legend-item"><div class="legend-color sillon-cama"></div> Sillón Cama</div>
+      <div class="legend-item"><div class="legend-color discapacitado"></div> Discapacitado</div>
+    </div>
+
+    <label class="opcion-comida">
+      <input type="checkbox" id="agregar-comida" />
+      ¿Desea agregar comida SipoBus? (+ $1000 por persona)
+    </label>
+
+    <button class="comprar-btn" id="btnComprar">Comprar</button>
+  </main>
+</body>
+<script src="../JS Sipobus/seleccion_asiento.js"></script>
+</html>

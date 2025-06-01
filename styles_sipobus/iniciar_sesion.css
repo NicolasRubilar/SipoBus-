@@ -1,0 +1,245 @@
+:root {
+  --azul-oscuro: #1e1e2f;
+  --azul-claro: #e6f0fa;
+  --texto-principal: #ffffff;
+  --texto-secundario: #333333;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(150deg, #e5e7e9, #2471a3, #4a235a);
+  color: var(--texto-secundario);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Header compacto y limpio */
+header {
+  background-color: var(--azul-oscuro);
+  color: var(--texto-principal);
+  padding: 1rem 0;   /* menos padding para achicar */
+  flex-shrink: 0;
+
+}
+
+.contenedor-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+
+  gap: 0.5rem;
+}
+
+.titulo-sipobus {
+  font-size: 1.5rem;  /* un poco más pequeño */
+  font-weight: bold;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+}
+
+nav a {
+  color: var(--texto-principal);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.3rem 0.5rem; /* padding pequeño para evitar cajas grandes */
+  background: none;
+  border: none;
+  border-radius: 0;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--azul-claro);
+  text-decoration: underline;
+}
+
+/* Main login */
+.login-main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+}
+
+.login-formulario {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+.login-formulario h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--azul-oscuro);
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: var(--azul-oscuro);
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input.input-error {
+  border-color: red;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+  display: block;
+  min-height: 18px;
+}
+
+button {
+  width: 100%;
+  background-color: var(--azul-oscuro);
+  color: white;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2a2a45;
+}
+
+.btn-volver {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: var(--azul-oscuro);
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  background-color: var(--azul-oscuro);
+  color: var(--texto-principal);
+  padding: 2rem 1rem;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.contenedor-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 1rem;
+}
+
+.footer-copy {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.redes-sociales {
+  list-style: none;
+  padding: 0;
+}
+
+.redes-sociales li a {
+  color: #87cefa;
+  text-decoration: none;
+}
+
+.redes-sociales li a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .contenedor-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  .login-main {
+    padding: 2rem 1rem;
+  }
+
+  .login-formulario {
+    padding: 1.5rem;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+
+  .contenedor-footer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-formulario {
+    max-width: 350px;
+    padding: 1.8rem;
+  }
+
+  .contenedor-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}

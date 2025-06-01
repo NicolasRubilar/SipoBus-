@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="../imagenes_sipobus/logo_sipobus.png" type="logo_sipobus">
+<link rel="stylesheet" href="/styles_sipobus/resumen_compra.css">
+<title>Resumen de compra - SipoBus</title>
+</head>
+<body>
+<header>
+  <div class="contenedor-header">
+    <h1 class="titulo-sipobus">SipoBus</h1>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="total_compra.html">Comprar Pasaje</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h2>Resumen de tu compra</h2>
+  <form id="formCompra">
+    <label for="origen">Origen:</label>
+    <select id="origen" name="origen" required>
+      <option value="" disabled selected>Selecciona origen</option>
+      <option value="Santiago">Santiago</option>
+      <option value="Valparaíso">Valparaíso</option>
+      <option value="Concepción">Concepción</option>
+      <option value="Puerto Montt">Puerto Montt</option>
+    </select>
+
+    <label for="destino">Destino:</label>
+    <select id="destino" name="destino" required>
+      <option value="" disabled selected>Selecciona destino</option>
+      <option value="Santiago">Santiago</option>
+      <option value="Valparaíso">Valparaíso</option>
+      <option value="Concepción">Concepción</option>
+      <option value="Puerto Montt">Puerto Montt</option>
+    </select>
+
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" name="fecha" required />
+
+    <label for="hora">Hora:</label>
+    <input type="time" id="hora" name="hora" required />
+
+    <div class="asientos-lista" id="asientosSeleccionados">
+      <!-- Aquí se listarán los asientos seleccionados -->
+    </div>
+
+    <div class="total" id="totalCompra">
+      Total: $0 CLP
+    </div>
+
+    <button type="submit">Confirmar compra</button>
+  </form>
+</main>
+<script src="../JS Sipobus/confirmar_compra.js" ></script>
+</body>
+</html>
