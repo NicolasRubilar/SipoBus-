@@ -1,68 +1,68 @@
-  // Precio por tipo de asiento
+document.addEventListener('DOMContentLoaded', () => {
+  // Precios por tipo de asiento
   const precios = {
     normal: 2000,
     'sillon-cama': 3000,
-    discapacitado: 2000
+    discapacitado: 2000,
+    comida: 1000
   };
 
-  // Obtener datos del localStorage
-  const asientosSeleccionados = JSON.parse(localStorage.getItem('asientosSeleccionados')) || [];
-  const agregarComida = JSON.parse(localStorage.getItem('agregarComida')) || false;
+  // Función para obtener el tipo de asiento por número (ej: 1A, 6C)
+  function tipoAsiento(numero) {
+    const fila = parseInt(numero);
+    if (fila >= 1 && fila <= 2) return 'discapacitado';
+    if (fila >= 3 && fila <= 5) return 'normal';
+    if (fila >= 6 && fila <= 8) return 'sillon-cama';
+    return 'normal'; // fallback
+  }
 
+  // Obtener datos del localStorage
+  const asientosSeleccionados = JSON.parse(localStorage.getItem('asientos')) || [];
+  const incluyeComida = localStorage.getItem('comida') === 'true';
+
+  // Referencias al DOM para mostrar detalles (opcional)
   const asientosListaDiv = document.getElementById('asientosSeleccionados');
   const totalDiv = document.getElementById('totalCompra');
 
-  // Mostrar asientos y calcular total
-  function mostrarAsientos() {
+  // Mostrar asientos seleccionados con precio (opcional)
+  if (asientosSeleccionados.length === 0) {
+    asientosListaDiv.innerHTML = '<p>No hay asientos seleccionados.</p>';
+    totalDiv.textContent = 'Total: $0 CLP';
+  } else {
     asientosListaDiv.innerHTML = '';
-
-    if (asientosSeleccionados.length === 0) {
-      asientosListaDiv.innerHTML = '<p>No hay asientos seleccionados.</p>';
-      totalDiv.textContent = 'Total: $0 CLP';
-      return;
-    }
-
     let total = 0;
-    asientosSeleccionados.forEach(({ id, tipo }) => {
-      const precioAsiento = precios[tipo] || 0;
-      total += precioAsiento;
+
+    asientosSeleccionados.forEach(num => {
+      const tipo = tipoAsiento(num);
+      const precio = precios[tipo] || 0;
+      total += precio;
 
       const div = document.createElement('div');
-      div.className = 'asiento-item';
-      div.textContent = `Asiento ${id} (${tipo.replace('-', ' ')})`;
-      const precioSpan = document.createElement('span');
-      precioSpan.textContent = `$${precioAsiento.toLocaleString('es-CL')} CLP`;
-      div.appendChild(precioSpan);
+      div.textContent = `Asiento ${num} (${tipo.replace('-', ' ')}) - $${precio.toLocaleString('es-CL')} CLP`;
       asientosListaDiv.appendChild(div);
     });
 
-    // Agregar comida al total si está seleccionado
-    if (agregarComida) {
-      const comidaCosto = 1000 * asientosSeleccionados.length;
-      total += comidaCosto;
+    if (incluyeComida) {
+      const precioComida = precios.comida * asientosSeleccionados.length;
+      total += precioComida;
 
       const comidaDiv = document.createElement('div');
-      comidaDiv.className = 'asiento-item';
-      comidaDiv.textContent = 'Comida SipoBus';
-      const precioComidaSpan = document.createElement('span');
-      precioComidaSpan.textContent = `$${comidaCosto.toLocaleString('es-CL')} CLP`;
-      comidaDiv.appendChild(precioComidaSpan);
+      comidaDiv.textContent = `Incluye comida (+$${precioComida.toLocaleString('es-CL')} CLP)`;
       asientosListaDiv.appendChild(comidaDiv);
     }
 
     totalDiv.textContent = `Total: $${total.toLocaleString('es-CL')} CLP`;
   }
 
-  mostrarAsientos();
-
-  // Manejar envío del formulario
-  document.getElementById('formCompra').addEventListener('submit', (e) => {
+  // Manejo del formulario de compra
+  const form = document.getElementById('formCompra');
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const origen = e.target.origen.value;
-    const destino = e.target.destino.value;
-    const fecha = e.target.fecha.value;
-    const hora = e.target.hora.value;
+    const origen = form.origen.value;
+    const destino = form.destino.value;
+    const fecha = form.fecha.value;
+    const hora = form.hora.value;
 
     if (origen === destino) {
       alert('El origen y el destino no pueden ser iguales.');
@@ -74,29 +74,29 @@
       return;
     }
 
+    // Calcular total de nuevo por seguridad
     let total = 0;
-    asientosSeleccionados.forEach(({ tipo }) => {
+    asientosSeleccionados.forEach(num => {
+      const tipo = tipoAsiento(num);
       total += precios[tipo] || 0;
     });
-    if (agregarComida) {
-      total += 1000 * asientosSeleccionados.length;
+    if (incluyeComida) {
+      total += precios.comida * asientosSeleccionados.length;
     }
 
+    // Guardar resumen en localStorage para siguiente página
     const resumenCompra = {
       origen,
       destino,
       fecha,
       hora,
+      asientos: asientosSeleccionados.map(num => ({ id: num, tipo: tipoAsiento(num) })),
+      comida: incluyeComida,
       total: `$${total.toLocaleString('es-CL')} CLP`
     };
-
-    // Guardar resumen para la página final
     localStorage.setItem('resumenCompra', JSON.stringify(resumenCompra));
 
-    // Aquí limpiamos los datos para evitar confusión, si quieres puedes no limpiar aún
-    localStorage.removeItem('asientosSeleccionados');
-    localStorage.removeItem('agregarComida');
-
-    // Redirigir a la página final donde se muestra resumen y botón para pagar
+    // Redirigir a la página final (total_compra.html)
     window.location.href = 'total_compra.html';
   });
+});

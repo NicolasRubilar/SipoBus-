@@ -1,94 +1,98 @@
-    // Datos de los asientos
-    const asientosData = [
-      { id: 'A1', tipo: 'normal' },
-      { id: 'A2', tipo: 'normal' },
-      { id: 'A3', tipo: 'normal' },
-      { id: 'A4', tipo: 'discapacitado' },
-      { id: 'A5', tipo: 'normal' },
-      { id: 'A6', tipo: 'normal' },
-      { id: 'A7', tipo: 'sillon-cama' },
-      { id: 'A8', tipo: 'sillon-cama' },
+document.addEventListener('DOMContentLoaded', () => {
+  // Datos de asientos
+  const asientosData = [];
 
-      { id: 'B1', tipo: 'normal' },
-      { id: 'B2', tipo: 'normal' },
-      { id: 'B3', tipo: 'normal' },
-      { id: 'B4', tipo: 'discapacitado' },
-      { id: 'B5', tipo: 'normal' },
-      { id: 'B6', tipo: 'normal' },
-      { id: 'B7', tipo: 'sillon-cama' },
-      { id: 'B8', tipo: 'sillon-cama' },
+  // Discapacitados: 1A-1D, 2A-2D
+  const filasDiscapacitados = [1, 2];
+  const letras = ['A', 'B', 'C', 'D'];
+  filasDiscapacitados.forEach(fila => {
+    letras.forEach(letra => {
+      asientosData.push({ tipo: 'discapacitado', numero: `${fila}${letra}` });
+    });
+  });
 
-      { id: 'C1', tipo: 'normal' },
-      { id: 'C2', tipo: 'normal' },
-      { id: 'C3', tipo: 'normal' },
-      { id: 'C4', tipo: 'discapacitado' },
-      { id: 'C5', tipo: 'normal' },
-      { id: 'C6', tipo: 'normal' },
-      { id: 'C7', tipo: 'sillon-cama' },
-      { id: 'C8', tipo: 'sillon-cama' },
-    ];
+  // Normales: 3-5
+  const filasNormales = [3, 4, 5];
+  filasNormales.forEach(fila => {
+    letras.forEach(letra => {
+      asientosData.push({ tipo: 'normal', numero: `${fila}${letra}` });
+    });
+  });
 
-    const asientosContainer = document.getElementById('asientos');
+  // Sillón cama: 6-8
+  const filasSillon = [6, 7, 8];
+  filasSillon.forEach(fila => {
+    letras.forEach(letra => {
+      asientosData.push({ tipo: 'sillon-cama', numero: `${fila}${letra}` });
+    });
+  });
 
-    // Crear asientos en la página
-    asientosData.forEach(asiento => {
-      const div = document.createElement('div');
-      div.classList.add('asiento', asiento.tipo);
-      div.textContent = asiento.id;
-      div.dataset.tipo = asiento.tipo;
-      div.dataset.id = asiento.id;
-      asientosContainer.appendChild(div);
+  const filas = 8;
+  const asientosPorFila = 4;
+
+  const busContainer = document.getElementById('bus-container');
+  busContainer.innerHTML = ''; // limpiar
+
+  function crearAsiento(tipo, numero) {
+    const asiento = document.createElement('div');
+    asiento.classList.add('asiento', tipo);
+    asiento.textContent = numero;
+    asiento.dataset.asiento = numero;
+
+    asiento.addEventListener('click', () => {
+      asiento.classList.toggle('seleccionado');
     });
 
-    // Para controlar selección
-    const seleccionados = new Set();
+    return asiento;
+  }
 
-    asientosContainer.addEventListener('click', e => {
-      if (e.target.classList.contains('asiento')) {
-        const asiento = e.target;
-        const id = asiento.dataset.id;
-        if (seleccionados.has(id)) {
-          seleccionados.delete(id);
-          asiento.classList.remove('seleccionado');
-        } else {
-          seleccionados.add(id);
-          asiento.classList.add('seleccionado');
-        }
-      }
-    });
+  for (let fila = 0; fila < filas; fila++) {
+    const filaDiv = document.createElement('div');
+    filaDiv.classList.add('fila-bus');
 
-    // Aquí recuperamos datos previos (origen, destino, fecha, hora, total)
-    // Estos deberían estar guardados en localStorage en la página anterior
-    const resumenGuardado = JSON.parse(localStorage.getItem('datosViaje')) || {};
-    const { origen, destino, fecha, hora, total: totalCalculado } = resumenGuardado;
+    // Ventana izquierda
+    const ventanaIzq = document.createElement('div');
+    ventanaIzq.classList.add('ventana');
+    filaDiv.appendChild(ventanaIzq);
 
-    document.getElementById('btnComprar').addEventListener('click', () => {
-      if (seleccionados.size === 0) {
-        alert('Por favor seleccione al menos un asiento.');
-        return;
-      }
+    // Asiento 1 y 2
+    const idxAsiento1 = fila * asientosPorFila;
+    filaDiv.appendChild(crearAsiento(asientosData[idxAsiento1].tipo, asientosData[idxAsiento1].numero));
+    filaDiv.appendChild(crearAsiento(asientosData[idxAsiento1 + 1].tipo, asientosData[idxAsiento1 + 1].numero));
 
-      const asientosSeleccionados = [];
-      seleccionados.forEach(id => {
-        const asiento = asientosData.find(a => a.id === id);
-        asientosSeleccionados.push({ id: asiento.id, tipo: asiento.tipo });
-      });
+    // Pasillo
+    const pasillo = document.createElement('div');
+    pasillo.classList.add('pasillo');
+    filaDiv.appendChild(pasillo);
 
-      const agregarComida = document.getElementById('agregar-comida').checked;
+    // Asiento 3 y 4
+    filaDiv.appendChild(crearAsiento(asientosData[idxAsiento1 + 2].tipo, asientosData[idxAsiento1 + 2].numero));
+    filaDiv.appendChild(crearAsiento(asientosData[idxAsiento1 + 3].tipo, asientosData[idxAsiento1 + 3].numero));
 
-      // Guardamos en localStorage
-      localStorage.setItem('asientosSeleccionados', JSON.stringify(asientosSeleccionados));
-      localStorage.setItem('agregarComida', JSON.stringify(agregarComida));
+    // Ventana derecha
+    const ventanaDer = document.createElement('div');
+    ventanaDer.classList.add('ventana');
+    filaDiv.appendChild(ventanaDer);
 
-      // Guardamos resumen con los datos del viaje y total
-      localStorage.setItem('resumenCompra', JSON.stringify({
-        origen,
-        destino,
-        fecha,
-        hora,
-        total: totalCalculado
-      }));
+    busContainer.appendChild(filaDiv);
+  }
 
-      // Redirigir a confirmación de compra
-      window.location.href = 'confirmar_compra.html';
-    });
+  // Evento para el botón comprar
+  document.querySelector(".comprar-btn").addEventListener("click", function () {
+    const asientosSeleccionados = Array.from(document.querySelectorAll(".asiento.seleccionado"))
+      .map(a => a.dataset.asiento);
+
+    const incluyeComida = document.querySelector("#comidaCheckbox")?.checked || false;
+
+    if (asientosSeleccionados.length === 0) {
+      alert("Por favor selecciona al menos un asiento.");
+      return;
+    }
+
+    // Guardamos con claves claras
+    localStorage.setItem("asientos", JSON.stringify(asientosSeleccionados));
+    localStorage.setItem("comida", incluyeComida);
+
+    window.location.href = "resumen_compra.html";
+  });
+});

@@ -1,5 +1,3 @@
-/* styles.css */
-
 :root {
   --azul-oscuro: #1e1e2f;
   --azul-claro: #e6f0fa;
@@ -7,6 +5,7 @@
   --texto-secundario: #333333;
 }
 
+/* Generales */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,15 +23,15 @@ header {
 
 .contenedor-header {
   display: flex;
-  flex-wrap: wrap;           /* permite que los elementos bajen */
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
-
+  width: 100%;
+  gap: 1rem;
 }
 
 .titulo-sipobus {
@@ -47,17 +46,14 @@ nav a {
   font-weight: 500;
   padding: 0.4rem 0.6rem;
   transition: color 0.3s ease;
-  background: none;
-  border: none;
-  border-radius: 0;
 }
 
 nav a:hover {
   text-decoration: underline;
-  color:#aad4ff;
+  color: #aad4ff;
 }
 
-/* Main content */
+/* Main */
 main {
   max-width: 1200px;
   margin: 2rem auto;
@@ -121,9 +117,8 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: flex-start; /* ← importante para que se alinee arriba */
+  align-items: flex-start;
   max-width: 1200px;
-  width: 100%;
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
@@ -131,7 +126,7 @@ footer {
 }
 
 .footer-section {
-  flex: 1 1 200px; /* ← Se adapta y no se rompe en móviles */
+  flex: 1 1 200px;
   min-width: 200px;
   max-width: 300px;
   margin-bottom: 1rem;
@@ -163,20 +158,39 @@ footer {
   .contenedor-header {
     flex-direction: column;
     align-items: center;
+    gap: 1.5rem;
+  }
+  .titulo-sipobus{
+    margin-bottom: 0.5rem;
   }
 
   nav {
-    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
   }
 
-  #Menu {
+  nav a{
+    margin-left: 0;
+  }
+
+  .nav-box {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  #Menu,
+  .contenedor-footer,
+  .galeria-destinos {
     flex-direction: column;
     align-items: center;
   }
 
-  .contenedor-footer {
-    flex-direction: column;
-    gap: 1rem;
+  .destino {
+    width: 90%;
   }
 }
 
@@ -221,7 +235,6 @@ footer {
   width: 100%;
   height: 140px;
   object-fit: cover;
-  display: block;
 }
 
 .destino p {
@@ -231,7 +244,7 @@ footer {
   font-size: 1.1rem;
 }
 
-/* Banner Sesión */
+/* Banner */
 .banner-sesion {
   background: var(--azul-oscuro);
   color: var(--texto-principal);
@@ -248,16 +261,20 @@ footer {
   font-weight: 600;
 }
 
+.btn-banner,
+.click-box {
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
 .btn-banner {
   background-color: var(--azul-claro);
   color: var(--azul-oscuro);
-  padding: 0.75rem 2rem;
   font-size: 1.1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: inline-block;
 }
 
 .btn-banner:hover {
@@ -266,33 +283,15 @@ footer {
   box-shadow: 0 4px 10px rgba(195, 217, 248, 0.6);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .galeria-destinos {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .destino {
-    width: 90%;
-  }
-}
-
 .click-box {
-  display: inline-block;
-  padding: 0.5rem 1.2rem;
   background-color: var(--azul-oscuro);
   color: var(--texto-principal);
-  border-radius: 10px;
-  font-weight: 600;
-  text-decoration: none;
   box-shadow: 0 3px 8px rgba(30, 30, 47, 0.3);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .click-box:hover {
-  background-color: #0a4394; /* Un azul más oscuro */
+  background-color: #0a4394;
   box-shadow: 0 6px 14px rgba(22, 50, 92, 0.5);
 }
 
@@ -301,9 +300,7 @@ footer {
   background-color: var(--azul-claro);
   color: var(--azul-oscuro);
   border-radius: 8px;
-  text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.3s ease, color 0.3s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
@@ -311,75 +308,6 @@ footer {
   background-color: #c3d9f8;
   color: var(--azul-oscuro);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-@media (max-width: 768px) {
-  .contenedor-header {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-  .nav-box {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* --- Modo oscuro --- */
-body.dark-mode {
-  background: #121212;
-  color: #ddd;
-}
-
-body.dark-mode header,
-body.dark-mode footer {
-  background-color: #222;
-  color: #eee;
-}
-
-body.dark-mode .pasaje,
-body.dark-mode .destino {
-  background-color: #2a2a2a;
-  border-color: #444;
-  color: #ccc;
-}
-
-body.dark-mode .click-box,
-body.dark-mode .btn-banner {
-  background-color: #444;
-  color: #eee;
-  box-shadow: none;
-}
-
-body.dark-mode .click-box:hover,
-body.dark-mode .btn-banner:hover {
-  background-color: #555;
-  box-shadow: 0 0 10px #888;
-}
-
-/* --- Botón modo oscuro circular que sigue el cursor --- */
-#toggle-modo {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: #2471a3;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  z-index: 1000;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 60% 60%;
-  transition: background-color 0.3s ease;
 }
 
 /* --- Modo oscuro --- */
@@ -394,8 +322,14 @@ body.dark-mode footer {
   color: #ddd !important;
 }
 
-body.dark-mode nav a {
-  color: #aaa !important;
+body.dark-mode nav a,
+body.dark-mode a {
+  color: #aad4ff !important;
+  text-decoration: none;
+}
+
+body.dark-mode nav a:hover {
+  color: #ffffff !important;
 }
 
 body.dark-mode .pasaje,
@@ -408,8 +342,8 @@ body.dark-mode .destino {
 body.dark-mode .btn-banner,
 body.dark-mode .click-box {
   background-color: #444c6e !important;
-  color: #ddd !important;
-  box-shadow: 0 3px 8px rgba(255 255 255 / 0.2);
+  color: #fff !important;
+  box-shadow: 0 3px 8px rgba(255, 255, 255, 0.2);
 }
 
 body.dark-mode .btn-banner:hover,
@@ -418,47 +352,6 @@ body.dark-mode .click-box:hover {
   box-shadow: 0 0 10px #888 !important;
 }
 
-/* Botón modo oscuro con ícono SVG sin texto visible */
-#toggle-modo {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--azul-oscuro);
-  color: transparent !important;       /* Oculta texto/emojis */
-  font-size: 0 !important;             /* Oculta texto/emojis */
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s ease;
-  z-index: 9999;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 60% 60%;
-}
-
-#toggle-modo:hover {
-  background-color: #0a4394; /* azul más oscuro al pasar mouse */
-}
-
-/* Icono sol (modo claro) */
-body:not(.dark-mode) #toggle-modo {
-  background-color: #f39c12;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.5a1 1 0 010 2 5.5 5.5 0 100 11 1 1 0 010 2 7.5 7.5 0 110-15z"/></svg>');
-}
-
-/* Icono luna (modo oscuro) */
-body.dark-mode #toggle-modo {
-  background-color: #34495e;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23f1c40f" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>');
-}
-
-/* Texto en modo oscuro */
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
@@ -467,27 +360,42 @@ body.dark-mode h5,
 body.dark-mode h6,
 body.dark-mode p,
 body.dark-mode span,
-body.dark-mode label {
+body.dark-mode label,
+body.dark-mode .destino p,
+body.dark-mode .pasaje h3 {
   color: #ddd !important;
 }
 
-body.dark-mode a,
-body.dark-mode nav a {
-  color: #aad4ff !important;  /* color claro para enlaces */
-  text-decoration: underline;
+/* --- Botón modo oscuro flotante --- */
+#toggle-modo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: var(--azul-oscuro);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60% 60%;
+  font-size: 0 !important;
+  color: transparent !important;
+  z-index: 9999;
 }
 
-body.dark-mode nav a:hover {
-  color: #ffffff !important; /* color más claro al pasar mouse */
+#toggle-modo:hover {
+  background-color: #0a4394;
 }
 
-body.dark-mode .destino p,
-body.dark-mode .pasaje h3 {
-  color: #eee !important;
+body:not(.dark-mode) #toggle-modo {
+  background-color: #f39c12;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.5a1 1 0 010 2 5.5 5.5 0 100 11 1 1 0 010 2 7.5 7.5 0 110-15z"/></svg>');
 }
 
-/* Evitar colores oscuros en botones y textos importantes */
-body.dark-mode .btn-banner,
-body.dark-mode .click-box {
-  color: #fff !important;
+body.dark-mode #toggle-modo {
+  background-color: #34495e;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23f1c40f" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>');
 }

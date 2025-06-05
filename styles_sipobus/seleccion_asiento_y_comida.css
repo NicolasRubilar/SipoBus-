@@ -1,186 +1,236 @@
-    :root {
-      --azul-oscuro: #1e1e2f;
-      --azul-claro: #e6f0fa;
-      --texto-principal: #ffffff;
-      --texto-secundario: #333333;
-      --verde: #4caf50;
-      --rojo: #f44336;
-      --gris-claro: #f5f5f5;
-      --gris-medio: #ccc;
-    }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(150deg, #e5e7e9, #2471a3, #4a235a);
-      color: var(--texto-secundario);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-    }
-    header {
-      background-color: var(--azul-oscuro);
-      color: var(--texto-principal);
-      padding: 1rem 0;
-      flex-shrink: 0;
-    }
-    .contenedor-header {
-      max-width: 1200px;
-      width: 90%;
-      margin: 0 auto;
-      padding: 0 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .titulo-sipobus {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin: 0;
-    }
-    nav {
-      display: flex;
-      gap: 1rem;
-    }
-    nav a {
-      color: var(--texto-principal);
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.4rem 0.6rem;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: var(--azul-claro);
-      text-decoration: underline;
-    }
-    .comprar-main {
-      flex-grow: 1;
-      max-width: 900px;
-      width: 90%;
-      margin: 2rem auto;
-      background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      box-sizing: border-box;
-    }
-    .comprar-main h2 {
-      text-align: center;
-      color: var(--azul-oscuro);
-      margin-bottom: 1.5rem;
-    }
-    .asientos-container {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 12px;
-      margin-bottom: 1.5rem;
-      justify-items: center;
-    }
-    .asiento {
-      width: 40px;
-      height: 40px;
-      background-color: var(--gris-claro);
-      border-radius: 6px;
-      border: 2px solid var(--gris-medio);
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 0.9rem;
-      user-select: none;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-      position: relative;
-    }
-    .asiento.normal {
-      background-color: #d6eaff;
-      border-color: #5a9bd5;
-    }
-    .asiento.sillon-cama {
-      background-color: #ffd6d6;
-      border-color: #d55a5a;
-    }
-    .asiento.discapacitado {
-      background-color: #d6ffd6;
-      border-color: #5ad55a;
-    }
-    .asiento.seleccionado {
-      background-color: var(--azul-oscuro);
-      color: var(--texto-principal);
-      border-color: var(--azul-claro);
-    }
-    .legend-container {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      color: var(--azul-oscuro);
-    }
-    .legend-color {
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      border: 1.5px solid var(--gris-medio);
-    }
-    .legend-color.normal {
-      background-color: #d6eaff;
-      border-color: #5a9bd5;
-    }
-    .legend-color.sillon-cama {
-      background-color: #ffd6d6;
-      border-color: #d55a5a;
-    }
-    .legend-color.discapacitado {
-      background-color: #d6ffd6;
-      border-color: #5ad55a;
-    }
-    .opcion-comida {
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      font-size: 1rem;
-      color: var(--azul-oscuro);
-    }
-    .opcion-comida input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-    }
-    button.comprar-btn {
-      display: block;
-      width: 100%;
-      background-color: var(--azul-oscuro);
-      color: var(--texto-principal);
-      font-weight: bold;
-      font-size: 1.1rem;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button.comprar-btn:hover {
-      background-color: #2a2a45;
-    }
-    @media (max-width: 600px) {
-      .asientos-container {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-      }
-      .asiento {
-        width: 36px;
-        height: 36px;
-        font-size: 0.85rem;
-      }
-      .comprar-main {
-        padding: 1.5rem;
-      }
-    }
+:root {
+  --azul-oscuro: #1e1e2f;
+  --azul-claro: #e6f0fa;
+  --texto-principal: #ffffff;
+  --texto-secundario: #333333;
+  --verde: #4caf50;
+  --rojo: #f44336;
+  --gris-claro: #f5f5f5;
+  --gris-medio: #ccc;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(150deg, #e5e7e9, #2471a3, #4a235a);
+  color: var(--texto-secundario);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: var(--azul-oscuro);
+  color: var(--texto-principal);
+  padding: 1rem 0;
+  flex-shrink: 0;
+}
+
+.contenedor-header {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.titulo-sipobus {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: var(--texto-principal);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--azul-claro);
+  text-decoration: underline;
+}
+
+.comprar-main {
+  flex-grow: 1;
+  max-width: 900px;
+  width: 80%;
+  min-width: 320px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+}
+
+.comprar-main h2 {
+  text-align: center;
+  color: var(--azul-oscuro);
+  margin-bottom: 1.5rem;
+}
+
+.bus-layout {
+  max-width: 600px;
+}
+
+/* Fila del bus */
+.fila-bus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* Ventanas a los lados */
+.ventana {
+  width: 25px;
+  height: 40px;
+  background: linear-gradient(135deg, #6bb8f0, #14568a);
+  border-radius: 8px;
+}
+
+/* Pasillo en el medio */
+.pasillo {
+  width: 40px;
+  height: 40px;
+}
+
+/* Asientos */
+.asiento {
+  width: 40px;
+  height: 40px;
+  font-size: 0.9rem;
+  background-color: var(--gris-claro);
+  border-radius: 8px;
+  border: 2px solid var(--gris-medio);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+.asiento.normal {
+  background-color: #d6eaff;
+  border-color: #5a9bd5;
+}
+
+.asiento.sillon-cama {
+  background-color: #ffd6d6;
+  border-color: #d55a5a;
+}
+
+.asiento.discapacitado {
+  background-color: #d6ffd6;
+  border-color: #5ad55a;
+}
+
+.asiento.seleccionado {
+  background-color: var(--azul-oscuro);
+  color: var(--texto-principal);
+  border-color: var(--azul-claro);
+}
+
+.seat-label {
+  font-weight: bold;
+  color: var(--azul-oscuro);
+  user-select: none;
+}
+
+.legend-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--azul-oscuro);
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1.5px solid var(--gris-medio);
+}
+
+.legend-color.normal {
+  background-color: #d6eaff;
+  border-color: #5a9bd5;
+}
+
+.legend-color.sillon-cama {
+  background-color: #ffd6d6;
+  border-color: #d55a5a;
+}
+
+.legend-color.discapacitado {
+  background-color: #d6ffd6;
+  border-color: #5ad55a;
+}
+
+.opcion-comida {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1rem;
+  color: var(--azul-oscuro);
+}
+
+.opcion-comida input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+button.comprar-btn {
+  display: block;
+  width: 100%;
+  background-color: var(--azul-oscuro);
+  color: var(--texto-principal);
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.comprar-btn:hover {
+  background-color: #2a2a45;
+}
+
+@media (max-width: 768px) {
+  .asiento {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+
+  .bus-layout {
+    max-width: 100%;
+  }
+}
