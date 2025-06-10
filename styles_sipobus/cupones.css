@@ -1,0 +1,217 @@
+:root {
+  --azul-oscuro: #1e1e2f;
+  --azul-claro: #e6f0fa;
+  --texto-principal: #ffffff;
+  --texto-secundario: #333333;
+  --box-bg: #fff;
+  --box-text: #222;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(150deg, #e5e7e9, #2471a3, #4a235a);
+  color: var(--texto-secundario);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+header {
+  background-color: var(--azul-oscuro);
+  color: var(--texto-principal);
+  padding: 1rem 0;
+}
+
+.contenedor-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.titulo-sipobus {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+nav a {
+  color: var(--texto-principal);
+  text-decoration: none;
+  margin-left: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--azul-claro);
+  text-decoration: underline;
+}
+
+.cupones-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: var(--box-bg);
+  color: var(--box-text);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.cupon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  background-color: var(--azul-claro);
+  animation: slideUp 0.5s ease;
+  transition: transform 0.3s ease;
+}
+
+.cupon:hover {
+  transform: scale(1.02);
+}
+
+.cupon h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--texto-secundario);
+}
+
+.cupon p {
+  margin: 0.2rem 0 0;
+  font-size: 1rem;
+  color: var(--texto-secundario);
+}
+
+.cupon button {
+  background-color: var(--azul-oscuro);
+  color: var(--texto-principal);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cupon button:hover {
+  background-color: var(--azul-claro);
+  color: var(--texto-secundario);
+}
+
+footer {
+  background-color: var(--azul-oscuro);
+  color: var(--texto-principal);
+  padding: 1rem 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+.contenedor-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1 1 300px;
+  margin: 1rem;
+  text-align: left;
+}
+
+.footer-section h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.footer-section p,
+.footer-section ul {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  color: var(--texto-principal);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: var(--azul-claro);
+}
+
+.footer-copy {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .contenedor-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cupon {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .cupon button {
+    align-self: stretch;
+  }
+
+  .contenedor-footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+}
