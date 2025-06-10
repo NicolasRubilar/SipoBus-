@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Protección: solo usuarios logueados pueden usar esta página
+  if (!localStorage.getItem('userLogueado')) {
+    alert('Debes iniciar sesión para comprar pasajes.');
+    window.location.href = 'crear_usuario.html';
+    return;
+  }
+
   // Datos de asientos
   const asientosData = [];
 

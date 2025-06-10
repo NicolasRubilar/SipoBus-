@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../imagenes_sipobus/logo_sipobus.png" type="logo_sipobus">
+    <link rel="stylesheet" href="../styles_sipobus/cambiar_pasaje.css">
     <title>Cambiar pasaje</title>
 </head>
 <header>
@@ -35,6 +36,14 @@
 
         <input type="button" value="Cambiar" title="Cambiar">
     </form>
-
+    <button id="toggle-modo" aria-label="Cambiar modo claro/oscuro"></button>
+    <script src="../JS Sipobus/inicio.js"></script>
+    <script>
+        // Script global de modo oscuro
+        const toggleModo = document.getElementById('toggle-modo');
+        toggleModo.addEventListener('click', () => {
+            document.body.classList.toggle('modo-oscuro');
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,149 @@
+/* Cambiar Pasaje CSS */
+
+/* Variables de color */
+:root {
+  --azul-oscuro: #1e1e2f;
+  --azul-claro: #e6f0fa;
+  --texto-principal: #ffffff;
+  --texto-secundario: #333333;
+  --modal-bg: #fff;
+  --modal-text: #222;
+  --input-bg: #f7f7f7;
+  --input-text: #222;
+  --box-bg: #fff;
+  --box-text: #222;
+}
+
+/* Estilo general para el cuerpo */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(150deg, #e5e7e9, #2471a3, #4a235a);
+    color: var(--texto-secundario);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Modo oscuro */
+body.modo-oscuro {
+    background-color: #121212;
+    color: #f4f4f4;
+}
+
+/* Encabezado */
+header {
+    background-color: var(--azul-oscuro);
+    color: var(--texto-principal);
+    padding: 1rem 0;
+    flex-shrink: 0;
+}
+
+/* Contenedor del encabezado */
+.contenedor-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Listas */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 0.5rem 0;
+}
+
+ul li a {
+  color: var(--texto-principal);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+ul li a:hover {
+  color: var(--azul-claro);
+  text-decoration: underline;
+}
+
+/* Formularios */
+form {
+    background: var(--box-bg);
+    color: var(--box-text);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.modo-oscuro form {
+    background: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+form h4 {
+    margin-bottom: 0.5rem;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="date"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+form input[type="button"] {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--azul-oscuro);
+    color: var(--texto-principal);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="button"]:hover {
+    background-color: var(--azul-claro);
+}
+
+/* Botón de modo oscuro */
+#toggle-modo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#toggle-modo:hover {
+    background-color: #0056b3;
+}
+
+body.modo-oscuro #toggle-modo {
+    background-color: #f4f4f4;
+}
+
+body.modo-oscuro #toggle-modo:hover {
+    background-color: #ccc;
+}

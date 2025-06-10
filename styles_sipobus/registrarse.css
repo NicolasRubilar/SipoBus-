@@ -207,6 +207,38 @@ footer {
   text-decoration: underline;
 }
 
+/* --- Modo oscuro para página de registro --- */
+body.dark-mode {
+  background: #121212 !important;
+  color: #e0e0e0 !important;
+}
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1a1a2e !important;
+  color: #ddd !important;
+}
+body.dark-mode .formulario {
+  background: #232940 !important;
+  color: #e0e7ef !important;
+  box-shadow: 0 0 10px #555 !important;
+}
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: #23272f !important;
+  color: #f1f1f1 !important;
+  border: 1px solid #444 !important;
+}
+body.dark-mode button,
+body.dark-mode .btn-editar {
+  background-color: #4a6ec7 !important;
+  color: #fff !important;
+}
+body.dark-mode button:hover,
+body.dark-mode .btn-editar:hover {
+  background-color: #739de0 !important;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .contenedor-header {
@@ -251,4 +283,28 @@ img, svg {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Estilos para fecha de nacimiento y dirección */
+input[type="date"],
+input[type="text"].direccion {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Validación solo al enfocar */
+input[type="date"]:focus:invalid,
+input[type="text"].direccion:focus:invalid {
+  border-color: red;
+  box-shadow: 0 0 6px red;
+}
+
+input[type="date"]:focus:valid,
+input[type="text"].direccion:focus:valid {
+  border-color: green;
+  box-shadow: 0 0 6px green;
 }

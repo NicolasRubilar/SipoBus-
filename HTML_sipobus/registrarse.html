@@ -59,6 +59,16 @@
             pattern="^\+?56\s?9\s?\d{4}\s?\d{4}$"
           />
         </div>
+        
+        <div class="form-group">
+          <label for="fecha-nacimiento">Fecha de nacimiento</label>
+          <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required />
+        </div>
+
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <input type="text" id="direccion" name="direccion" placeholder="Tu dirección" required />
+        </div>
 
         <div class="form-group">
           <label for="clave">Contraseña</label>
@@ -120,6 +130,9 @@
       <p>&copy; 2025 SipoBus Chile. Todos los derechos reservados.</p>
     </div>
   </footer>
+  <button id="toggle-modo" aria-label="Cambiar modo claro/oscuro"></button>
+  <script src="../JS Sipobus/inicio.js"></script>
   <script src="../JS Sipobus/registrarse.js"></script>
+  <script src="../JS Sipobus/mode.js"></script>
 </body>
 </html>

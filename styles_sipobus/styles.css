@@ -125,6 +125,19 @@ footer {
   gap: 2rem;
 }
 
+.contenedor-footer.moderno {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  background: linear-gradient(90deg, #0f172a 0%, #334155 100%);
+  color: #f1f5f9;
+  padding: 2.5rem 2rem 1.5rem 2rem;
+  border-radius: 18px 18px 0 0;
+  margin-top: 3rem;
+}
+
 .footer-section {
   flex: 1 1 200px;
   min-width: 200px;
@@ -132,25 +145,74 @@ footer {
   margin-bottom: 1rem;
 }
 
-.footer-copy {
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #aaa;
+.footer-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #38bdf8;
+  letter-spacing: 1px;
+}
+
+.footer-contacto {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-contacto li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.footer-icon {
+  font-family: 'FontAwesome', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2em;
+  margin-right: 0.5em;
+  color: #38bdf8;
 }
 
 .redes-sociales {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .redes-sociales li a {
-  color: #87cefa;
+  color: #f1f5f9;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
 }
 
 .redes-sociales li a:hover {
-  text-decoration: underline;
+  color: #38bdf8;
+}
+
+.footer-copy {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #aaa;
+  background: transparent;
+  margin-top: 1.5rem;
+  padding-bottom: 1.2rem;
+}
+
+@media (max-width: 700px) {
+  .contenedor-footer.moderno {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 1rem 1rem 1rem;
+  }
 }
 
 /* Responsive */
@@ -364,6 +426,49 @@ body.dark-mode label,
 body.dark-mode .destino p,
 body.dark-mode .pasaje h3 {
   color: #ddd !important;
+}
+
+body.dark-mode .box,
+body.dark-mode .cupon {
+  background: #232940 !important;
+  color: #e0e7ef !important;
+  box-shadow: 0 0 10px #555 !important;
+}
+
+body.dark-mode .contenedor-footer.moderno {
+  background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%) !important;
+  color: #e0e7ef !important;
+}
+
+body.dark-mode .footer-section h3 {
+  color: #38bdf8 !important;
+}
+
+body.dark-mode .footer-icon {
+  color: #38bdf8 !important;
+}
+
+body.dark-mode .footer-copy {
+  color: #64748b !important;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: #23272f !important;
+  color: #f1f1f1 !important;
+  border: 1px solid #444 !important;
+}
+
+body.dark-mode button,
+body.dark-mode .btn-editar {
+  background-color: #4a6ec7 !important;
+  color: #fff !important;
+}
+
+body.dark-mode button:hover,
+body.dark-mode .btn-editar:hover {
+  background-color: #739de0 !important;
 }
 
 /* --- Botón modo oscuro flotante --- */

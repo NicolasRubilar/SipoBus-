@@ -1,4 +1,4 @@
-  :root {
+:root {
     --azul-oscuro: #1e1e2f;
     --azul-claro: #e6f0fa;
     --texto-principal: #ffffff;
@@ -100,6 +100,38 @@
   button:hover {
     background-color: #2a2a45;
   }
+  /* --- Modo oscuro para resumen de compra --- */
+body.dark-mode {
+  background: #121212 !important;
+  color: #e0e0e0 !important;
+}
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1a1a2e !important;
+  color: #ddd !important;
+}
+body.dark-mode .resumen-box,
+body.dark-mode .box {
+  background: #232940 !important;
+  color: #e0e7ef !important;
+  box-shadow: 0 0 10px #555 !important;
+}
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: #23272f !important;
+  color: #f1f1f1 !important;
+  border: 1px solid #444 !important;
+}
+body.dark-mode button,
+body.dark-mode .btn-editar {
+  background-color: #4a6ec7 !important;
+  color: #fff !important;
+}
+body.dark-mode button:hover,
+body.dark-mode .btn-editar:hover {
+  background-color: #739de0 !important;
+}
   @media (max-width: 600px) {
     main {
       width: 95%;
