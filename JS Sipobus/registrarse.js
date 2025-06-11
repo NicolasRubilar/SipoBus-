@@ -38,6 +38,7 @@ form.addEventListener("submit", function (e) {
   };
 
   localStorage.setItem("userProfile", JSON.stringify(userProfile));
+  localStorage.setItem("userLogueado", JSON.stringify(userProfile));
   alert("Registro exitoso!");
-  window.location.href = "crear_usuario.html";
+  window.location.href = "perfil.html";
 });

@@ -74,11 +74,35 @@ function generarPDF() {
   doc.save("boleto_sipobus.pdf");
 }
 
-document.getElementById('btnDescargarPDF').addEventListener('click', generarPDF);
-document.getElementById('btnOtraCompra').addEventListener('click', () => {
-  window.location.href = 'seleccion_asiento_y_comida.html';  // Cambia por la ruta correcta
-});
+document.addEventListener("DOMContentLoaded", function () {
+  const btnPDF = document.getElementById("btnDescargarPDF");
+  const btnOtra = document.getElementById("btnOtraCompra");
+  const btnInicio = document.getElementById("btnVolverInicio");
 
-document.getElementById('btnVolverInicio').addEventListener('click', () => {
-  window.location.href = 'inicio.html';  // Cambia por la ruta correcta
+  btnPDF.onclick = function () {
+    const resumen = JSON.parse(localStorage.getItem("resumenCompra"));
+    if (!resumen) {
+      alert("No hay datos de compra para el ticket.");
+      return;
+    }
+    const doc = new window.jspdf.jsPDF();
+    doc.setFontSize(18);
+    doc.text("Ticket SipoBus", 20, 20);
+    doc.setFontSize(12);
+    doc.text(`Origen: ${resumen.origen}`, 20, 35);
+    doc.text(`Destino: ${resumen.destino}`, 20, 45);
+    doc.text(`Fecha: ${resumen.fecha}`, 20, 55);
+    doc.text(`Hora: ${resumen.hora}`, 20, 65);
+    doc.text(`Asientos: ${resumen.asientos.map(a => a.id).join(", ")}`, 20, 75);
+    doc.text(`Comida: ${resumen.comida ? "Sí" : "No"}`, 20, 85);
+    doc.text(`Total: ${resumen.total || ""}`, 20, 95);
+    doc.save("ticket_sipobus.pdf");
+  };
+
+  btnOtra.onclick = function () {
+    window.location.href = "seleccion_asiento_y_comida.html";
+  };
+  btnInicio.onclick = function () {
+    window.location.href = "inicio.html";
+  };
 });

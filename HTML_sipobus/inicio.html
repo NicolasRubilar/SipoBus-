@@ -27,8 +27,8 @@
     <button id="toggle-modo" aria-label="Alternar modo oscuro" title="Alternar modo oscuro"></button>
 
     <section class="intro">
-      <h2 id="bienvenida-usuario">Recorriendo Chile contigo, kilómetro a kilómetro.</h2>
-      <button id="btnIrPerfil" class="btn-banner" style="margin-top:1.5rem;display:inline-block;">Ir a mi perfil</button>
+        <h2 id="bienvenida-usuario">Recorriendo Chile contigo, kilómetro a kilómetro.</h2>
+        <button id="btnIrPerfil" class="btn-banner" style="margin-top:1.5rem;display:inline-block;">Ir a mi perfil</button>
     </section>
 
     <section id="Menu">
@@ -139,25 +139,25 @@
 </footer>
 <script src="../JS Sipobus/inicio.js"></script>
 <script>
-  // Mensaje de bienvenida y atajo a perfil
-  const userLog = localStorage.getItem('userLogueado');
-  const bienvenida = document.getElementById('bienvenida-usuario');
-  const btnIrPerfil = document.getElementById('btnIrPerfil');
-  if(userLog) {
+// Mensaje de bienvenida y atajo a perfil
+const userLog = localStorage.getItem('userLogueado');
+const bienvenida = document.getElementById('bienvenida-usuario');
+const btnIrPerfil = document.getElementById('btnIrPerfil');
+if(userLog) {
     const user = JSON.parse(userLog);
     if(bienvenida && user.nombre) {
-      bienvenida.textContent = `¡Bienvenido, ${user.nombre}!`;
+        bienvenida.textContent = `¡Bienvenido, ${user.nombre}!`;
     }
     btnIrPerfil.onclick = function() {
-      window.location.href = 'perfil.html';
+        window.location.href = 'perfil.html';
     };
     btnIrPerfil.textContent = 'Ir a mi perfil';
-  } else {
+} else {
     btnIrPerfil.onclick = function() {
-      window.location.href = 'crear_usuario.html';
+        window.location.href = 'crear_usuario.html';
     };
     btnIrPerfil.textContent = 'Crea tu usuario';
-  }
+}
 </script>
 </body>
 </html>

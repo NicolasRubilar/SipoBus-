@@ -3,46 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../imagenes_sipobus/logo_sipobus.png" type="logo_sipobus">
+    <title>Cambiar pasaje | SipoBus</title>
+    <link rel="icon" href="../imagenes_sipobus/logo_sipobus.png" type="image/png">
+    <link rel="stylesheet" href="../styles_sipobus/styles.css">
     <link rel="stylesheet" href="../styles_sipobus/cambiar_pasaje.css">
-    <title>Cambiar pasaje</title>
 </head>
-<header>
-    <h1 title="Cambiar pasaje">Cambiar pasaje</h1>
-</header>
-
 <body>
-    
-    <ul>
-        <li>
-            <a href="inicio.html"title="inicio">Volver a inicio</a>
-        </li>
-        <li>
-            <a href="crear_usuario.html"title="Enlace crear usuario">Crear usuario</a>
-        </li>
-    </ul>    
+    <header>
+        <div class="contenedor-header">
+            <h1 class="titulo-sipobus" style="cursor:pointer;">SipoBus</h1>
+            <nav>
+                <a href="crear_usuario.html">Iniciar sesión</a>
+                <a href="seleccion_asiento_y_comida.html">Selecciona asientos</a>
+                <a href="cambiar_pasaje.html" class="activo">Cambiar pasaje</a>
+                <a href="anular_pasaje.html">Anular pasaje</a>
+                <a href="cupones.html">Cupones</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
 
-    <p>¿Tuviste un inconveniente? Puedes cambiar tu reserva hasta 4 horas antes de la salida.</p>
+    <main>
+        <section class="cambiar-container">
+            <h2>Cambiar pasaje</h2>
+            <p class="cambiar-desc">¿Tuviste un inconveniente? Puedes cambiar tu reserva hasta 4 horas antes de la salida.</p>
+            <form class="cambiar-form" autocomplete="off">
+                <div class="form-group">
+                    <label for="reserva">N° de reserva</label>
+                    <input type="text" id="reserva" name="reserva" placeholder="N° de reserva" required maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha de viaje</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <button type="submit" class="btn-banner">Cambiar</button>
+            </form>
+            <div class="volver-inicio">
+                <a href="inicio.html" class="btn-volver">← Volver al inicio</a>
+            </div>
+        </section>
+    </main>
 
-    <form>
-        <h4 title="Numero de reserva">N° de reserva</h4>
-        <input type="text" placeholder="N° de reserva" required maxlength="5"title="Numero de reserva">
-
-        <h4 title="Ingresar correo electronico">Ingrese su correo electronico</h4>
-        <input type="email" placeholder="Correo Electronico" title="Ingrese su correo electronico">
-
-        <h4 title="fecha de viaje">Fecha de viaje</h4> 
-        <input type="date" title="Fecha de viaje">
-
-        <input type="button" value="Cambiar" title="Cambiar">
-    </form>
+    <footer>
+        <div class="contenedor-footer">
+            <div class="footer-section">
+                <h4>Ubicación</h4>
+                <p>Santiago - Av. Alameda Libertador O'Higgins 3850, Estación Central</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quiénes Somos</h4>
+                <p>Somos una empresa familiar de buses y queremos lo mejor para ti.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Redes Sociales</h4>
+                <ul class="redes-sociales">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">X / Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <p>&copy; 2025 SipoBus Chile. Todos los derechos reservados.</p>
+        </div>
+    </footer>
     <button id="toggle-modo" aria-label="Cambiar modo claro/oscuro"></button>
     <script src="../JS Sipobus/inicio.js"></script>
     <script>
-        // Script global de modo oscuro
-        const toggleModo = document.getElementById('toggle-modo');
-        toggleModo.addEventListener('click', () => {
-            document.body.classList.toggle('modo-oscuro');
+        // Validación simple del formulario
+        document.querySelector('.cambiar-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Solicitud de cambio enviada! Pronto recibirás un correo con la confirmación.');
+            this.reset();
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector('.titulo-sipobus').onclick = function() {
+                window.location.href = "inicio.html";
+            };
         });
     </script>
 </body>

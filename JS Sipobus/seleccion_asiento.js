@@ -6,100 +6,76 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // Datos de asientos
-  const asientosData = [];
+  const busContainer = document.getElementById("bus-container");
+  const btnComprar = document.getElementById("btnComprar");
+  const comidaCheckbox = document.getElementById("agregar-comida");
 
-  // Discapacitados: 1A-1D, 2A-2D
-  const filasDiscapacitados = [1, 2];
-  const letras = ['A', 'B', 'C', 'D'];
-  filasDiscapacitados.forEach(fila => {
-    letras.forEach(letra => {
-      asientosData.push({ tipo: 'discapacitado', numero: `${fila}${letra}` });
-    });
-  });
-
-  // Normales: 3-5
-  const filasNormales = [3, 4, 5];
-  filasNormales.forEach(fila => {
-    letras.forEach(letra => {
-      asientosData.push({ tipo: 'normal', numero: `${fila}${letra}` });
-    });
-  });
-
-  // Sillón cama: 6-8
-  const filasSillon = [6, 7, 8];
-  filasSillon.forEach(fila => {
-    letras.forEach(letra => {
-      asientosData.push({ tipo: 'sillon-cama', numero: `${fila}${letra}` });
-    });
-  });
-
-  const filas = 8;
-  const asientosPorFila = 4;
-
-  const busContainer = document.getElementById('bus-container');
-  busContainer.innerHTML = ''; // limpiar
-
-  function crearAsiento(tipo, numero) {
-    const asiento = document.createElement('div');
-    asiento.classList.add('asiento', tipo);
-    asiento.textContent = numero;
-    asiento.dataset.asiento = numero;
-
-    asiento.addEventListener('click', () => {
-      asiento.classList.toggle('seleccionado');
-    });
-
-    return asiento;
+  // Configuración de asientos:
+  // - Discapacitados: primeras 2 filas (8 asientos)
+  // - Normales: filas del medio (filas 2 a 5)
+  // - Sillón cama: últimas 2 filas (filas 6 y 7)
+  const filas = 8, columnas = 4;
+  let asientos = [];
+  for (let f = 0; f < filas; f++) {
+    let fila = [];
+    for (let c = 0; c < columnas; c++) {
+      let tipo;
+      if (f < 2) {
+        tipo = "discapacitado";
+      } else if (f < 6) {
+        tipo = "normal";
+      } else {
+        tipo = "sillon-cama";
+      }
+      fila.push({ id: f * columnas + c + 1, tipo, seleccionado: false });
+    }
+    asientos.push(fila);
   }
 
-  for (let fila = 0; fila < filas; fila++) {
-    const filaDiv = document.createElement('div');
-    filaDiv.classList.add('fila-bus');
-
-    // Ventana izquierda
-    const ventanaIzq = document.createElement('div');
-    ventanaIzq.classList.add('ventana');
-    filaDiv.appendChild(ventanaIzq);
-
-    // Asiento 1 y 2
-    const idxAsiento1 = fila * asientosPorFila;
-    filaDiv.appendChild(crearAsiento(asientosData[idxAsiento1].tipo, asientosData[idxAsiento1].numero));
-    filaDiv.appendChild(crearAsiento(asientosData[idxAsiento1 + 1].tipo, asientosData[idxAsiento1 + 1].numero));
-
-    // Pasillo
-    const pasillo = document.createElement('div');
-    pasillo.classList.add('pasillo');
-    filaDiv.appendChild(pasillo);
-
-    // Asiento 3 y 4
-    filaDiv.appendChild(crearAsiento(asientosData[idxAsiento1 + 2].tipo, asientosData[idxAsiento1 + 2].numero));
-    filaDiv.appendChild(crearAsiento(asientosData[idxAsiento1 + 3].tipo, asientosData[idxAsiento1 + 3].numero));
-
-    // Ventana derecha
-    const ventanaDer = document.createElement('div');
-    ventanaDer.classList.add('ventana');
-    filaDiv.appendChild(ventanaDer);
-
-    busContainer.appendChild(filaDiv);
+  function renderBus() {
+    busContainer.innerHTML = "";
+    asientos.forEach((fila, i) => {
+      const row = document.createElement("div");
+      row.className = "fila-bus";
+      fila.forEach((asiento, j) => {
+        const btn = document.createElement("div");
+        btn.className = `asiento ${asiento.tipo} ${asiento.seleccionado ? "seleccionado" : ""}`;
+        btn.textContent = asiento.id;
+        btn.onclick = () => {
+          asiento.seleccionado = !asiento.seleccionado;
+          renderBus();
+        };
+        row.appendChild(btn);
+        if (j === 1) {
+          const pasillo = document.createElement("div");
+          pasillo.className = "pasillo";
+          row.appendChild(pasillo);
+        }
+      });
+      busContainer.appendChild(row);
+    });
   }
+  renderBus();
 
-  // Evento para el botón comprar
-  document.querySelector(".comprar-btn").addEventListener("click", function () {
-    const asientosSeleccionados = Array.from(document.querySelectorAll(".asiento.seleccionado"))
-      .map(a => a.dataset.asiento);
-
-    const incluyeComida = document.querySelector("#comidaCheckbox")?.checked || false;
-
-    if (asientosSeleccionados.length === 0) {
-      alert("Por favor selecciona al menos un asiento.");
+  btnComprar.onclick = function () {
+    const seleccionados = [];
+    asientos.flat().forEach(a => {
+      if (a.seleccionado) seleccionados.push({ id: a.id, tipo: a.tipo });
+    });
+    if (seleccionados.length === 0) {
+      alert("Selecciona al menos un asiento.");
       return;
     }
-
-    // Guardamos con claves claras
-    localStorage.setItem("asientos", JSON.stringify(asientosSeleccionados));
-    localStorage.setItem("comida", incluyeComida);
-
-    window.location.href = "resumen_compra.html";
-  });
+    // Simulación de origen/destino/fecha/hora
+    const resumen = {
+      origen: "Santiago",
+      destino: "Valparaíso",
+      fecha: new Date().toLocaleDateString(),
+      hora: "10:00",
+      asientos: seleccionados,
+      comida: comidaCheckbox.checked
+    };
+    localStorage.setItem("resumenCompra", JSON.stringify(resumen));
+    window.location.href = "total_compra.html";
+  };
 });

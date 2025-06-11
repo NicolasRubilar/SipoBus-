@@ -1,17 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anular Pasaje</title>
-    <link rel="stylesheet" href="../CSS Sipobus/estilos.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anular Pasaje | SipoBus</title>
+<link rel="icon" href="../imagenes_sipobus/logo_sipobus.png" type="logo_sipobus">
+<link rel="stylesheet" href="../styles_sipobus/anular_pasaje.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Anular Pasaje</h1>
-        <!-- ...existing content... -->
+<header>
+<div class="contenedor-header">
+    <h1 class="titulo-sipobus">SipoBus</h1>
+    <nav>
+    <a href="inicio.html">Inicio</a>
+    <a href="seleccion_asiento_y_comida.html">Selecciona asientos</a>
+    <a href="cambiar_pasaje.html">Cambiar pasaje</a>
+    <a href="anular_pasaje.html" class="activo">Anular pasaje</a>
+    <a href="cupones.html">Cupones</a>
+    <a href="contacto.html">Contacto</a>
+    </nav>
+</div>
+</header>
+<main>
+<section class="anular-main">
+    <h2>Anular Pasaje</h2>
+    <form class="anular-form" id="formAnularPasaje" autocomplete="off">
+    <label for="reserva">N° de reserva</label>
+    <input type="text" id="reserva" name="reserva" placeholder="N° de reserva" required maxlength="5">
+
+    <label for="correo">Correo electrónico</label>
+    <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+
+    <button type="submit">Anular</button>
+    </form>
+    <div id="mensaje-anulacion" style="display:none;color:var(--azul-oscuro);margin-top:1rem;text-align:center;font-weight:600;"></div>
+    <div style="text-align:center;margin-top:1.5rem;">
+    <a href="inicio.html" class="btn-volver">← Volver al inicio</a>
     </div>
-    <button id="toggle-modo" aria-label="Cambiar modo claro/oscuro"></button>
-    <script src="../JS Sipobus/inicio.js"></script>
+</section>
+</main>
+<footer>
+<div class="contenedor-footer">
+    <div class="footer-section">
+    <h4>Ubicación</h4>
+    <p>Santiago - Av. Alameda Libertador O'Higgins 3850, Estación Central</p>
+    </div>
+    <div class="footer-section">
+    <h4>Quiénes Somos</h4>
+    <p>Somos una empresa familiar de buses y queremos lo mejor para ti.</p>
+    </div>
+    <div class="footer-section">
+    <h4>Redes Sociales</h4>
+    <ul class="redes-sociales">
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">X / Twitter</a></li>
+    </ul>
+    </div>
+</div>
+<div class="footer-copy">
+    <p>&copy; 2025 SipoBus Chile. Todos los derechos reservados.</p>
+</div>
+</footer>
+<button id="toggle-modo" aria-label="Cambiar modo claro/oscuro"></button>
+<script src="../JS Sipobus/inicio.js"></script>
+<script>
+// Simulación de anulación y guardado en localStorage
+document.getElementById('formAnularPasaje').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const reserva = document.getElementById('reserva').value.trim();
+    const correo = document.getElementById('correo').value.trim();
+    if (!reserva || !correo) return;
+    // Guardar en localStorage (simulación de historial de anulaciones)
+    let anulaciones = JSON.parse(localStorage.getItem('anulacionesPasaje') || "[]");
+    anulaciones.push({ reserva, correo, fecha: new Date().toLocaleString() });
+    localStorage.setItem('anulacionesPasaje', JSON.stringify(anulaciones));
+    document.getElementById('formAnularPasaje').reset();
+    const exito = document.getElementById('mensaje-anulacion');
+    exito.textContent = "¡Tu solicitud de anulación fue recibida! Pronto recibirás un correo de confirmación.";
+    exito.style.display = "block";
+    setTimeout(() => { exito.style.display = "none"; }, 4000);
+});
+</script>
 </body>
 </html>

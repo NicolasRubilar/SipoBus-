@@ -10,7 +10,7 @@
 <body>
   <header>
     <div class="contenedor-header">
-      <h1 class="titulo-sipobus">SipoBus</h1>
+      <h1 class="titulo-sipobus" style="cursor:pointer;">SipoBus</h1>
       <nav>
         <a href="inicio.html">Inicio</a>
         <a href="total_compra.html">Comprar Pasaje</a>
@@ -21,13 +21,18 @@
 
   <main>
     <h2>Confirmación de Compra</h2>
-    <div id="resumenCompra">
-
-    </div>
+    <div id="resumenCompra"></div>
     <button id="btnPagar">Pagar</button>
   </main>
   <button id="toggle-modo" aria-label="Cambiar modo claro/oscuro"></button>
   <script src="../JS Sipobus/total_compra.js"></script>
   <script src="../JS Sipobus/inicio.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelector('.titulo-sipobus').onclick = function() {
+        window.location.href = "inicio.html";
+      };
+    });
+  </script>
 </body>
 </html>

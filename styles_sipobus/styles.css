@@ -13,44 +13,66 @@ body {
   color: var(--texto-secundario);
 }
 
-/* Header */
+/* HEADER UNIFICADO PARA TODAS LAS PÁGINAS */
 header {
   background-color: var(--azul-oscuro);
   color: var(--texto-principal);
   padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.13);
   flex-shrink: 0;
 }
 
 .contenedor-header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   width: 100%;
-  gap: 1rem;
+  box-sizing: border-box;
 }
 
 .titulo-sipobus {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   margin: 0;
+  cursor: pointer;
+  color: var(--texto-principal);
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.titulo-sipobus:hover {
+  color: #aad4ff;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  align-items: center;
 }
 
 nav a {
   color: var(--texto-principal);
-  margin-left: 1.5rem;
   text-decoration: none;
   font-weight: 500;
-  padding: 0.4rem 0.6rem;
-  transition: color 0.3s ease;
+  padding: 0.3rem 0.5rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  transition: color 0.3s;
+  font-size: 1rem;
 }
 
+nav a.activo,
 nav a:hover {
+  color: var(--azul-claro);
   text-decoration: underline;
-  color: #aad4ff;
 }
 
 /* Main */
@@ -105,74 +127,49 @@ main {
   text-decoration: underline;
 }
 
-/* Footer */
+/* Footer compacto y responsivo */
 footer {
-  background-color: var(--azul-oscuro);
-  color: var(--texto-principal);
-  padding: 2rem 1rem;
-  margin-top: 2rem;
+  background: linear-gradient(90deg, #1e1e2f 0%, #334155 100%);
+  color: #f1f5f9;
+  padding: 1.2rem 0 0.5rem 0;
+  margin-top: auto;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 14px 14px 0 0;
+  box-shadow: 0 -1px 8px rgba(30,30,47,0.10);
 }
 
 .contenedor-footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
-  text-align: center;
-  gap: 2rem;
-}
-
-.contenedor-footer.moderno {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 2rem;
-  background: linear-gradient(90deg, #0f172a 0%, #334155 100%);
-  color: #f1f5f9;
-  padding: 2.5rem 2rem 1.5rem 2rem;
-  border-radius: 18px 18px 0 0;
-  margin-top: 3rem;
+  gap: 1.2rem;
+  padding: 0 1rem;
 }
 
 .footer-section {
-  flex: 1 1 200px;
-  min-width: 200px;
-  max-width: 300px;
-  margin-bottom: 1rem;
-}
-
-.footer-section h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #38bdf8;
-  letter-spacing: 1px;
-}
-
-.footer-contacto {
-  list-style: none;
-  padding: 0;
+  flex: 1 1 140px;
+  min-width: 120px;
   margin: 0;
 }
 
-.footer-contacto li {
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.footer-section h4 {
   font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #38bdf8;
+  letter-spacing: 0.5px;
+  margin-top: 0;
 }
 
-.footer-icon {
-  font-family: 'FontAwesome', Arial, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.2em;
-  margin-right: 0.5em;
-  color: #38bdf8;
+.footer-section p,
+.footer-section ul {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.92rem;
+  color: #e0e7ef;
 }
 
 .redes-sociales {
@@ -180,39 +177,114 @@ footer {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.7rem;
 }
 
 .redes-sociales li a {
-  color: #f1f5f9;
+  color: #38bdf8;
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: color 0.2s;
+  gap: 0.3rem;
+  font-size: 0.95rem;
 }
 
 .redes-sociales li a:hover {
-  color: #38bdf8;
+  color: #fff;
+  text-decoration: underline;
 }
 
 .footer-copy {
   text-align: center;
   margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #aaa;
+  font-size: 0.85rem;
+  color: #cbd5e1;
   background: transparent;
-  margin-top: 1.5rem;
-  padding-bottom: 1.2rem;
+  padding-bottom: 0.3rem;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive footer y layout general */
+@media (max-width: 900px) {
+  .contenedor-footer {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 0.7rem;
+    align-items: flex-start;
+  }
+  .footer-section {
+    min-width: 0;
+    margin-bottom: 1rem;
+  }
 }
 
 @media (max-width: 700px) {
-  .contenedor-footer.moderno {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 2rem 1rem 1rem 1rem;
+  main, .intro, .banner-sesion, .destinos-populares {
+    max-width: 100vw !important;
+    padding: 0.5rem !important;
+    margin: 0.5rem 0 !important;
   }
+  .contenedor-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .contenedor-footer {
+    padding: 0 0.3rem;
+    gap: 0.7rem;
+  }
+  .footer-copy {
+    font-size: 0.82rem;
+    margin-top: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor-header,
+  .contenedor-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0 0.2rem;
+  }
+  .footer-section {
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+  }
+  .footer-copy {
+    font-size: 0.78rem;
+    padding-bottom: 0.2rem;
+  }
+}
+
+/* Footer modo oscuro */
+body.dark-mode footer {
+  background: linear-gradient(90deg, #1a1a2e 0%, #232940 100%) !important;
+  color: #e0e7ef !important;
+  box-shadow: 0 -1px 8px rgba(30,30,47,0.18);
+}
+
+body.dark-mode .footer-section h4 {
+  color: #38bdf8 !important;
+}
+
+body.dark-mode .footer-section p,
+body.dark-mode .footer-section ul {
+  color: #e0e7ef !important;
+}
+
+body.dark-mode .footer-copy {
+  color: #64748b !important;
 }
 
 /* Responsive */
@@ -384,14 +456,23 @@ body.dark-mode footer {
   color: #ddd !important;
 }
 
-body.dark-mode nav a,
-body.dark-mode a {
-  color: #aad4ff !important;
-  text-decoration: none;
+body.dark-mode .contenedor-header {
+  background: transparent !important;
 }
 
+body.dark-mode .titulo-sipobus {
+  color: #aad4ff !important;
+}
+
+body.dark-mode nav a {
+  color: #aad4ff !important;
+}
+
+body.dark-mode nav a.activo,
 body.dark-mode nav a:hover {
-  color: #ffffff !important;
+  color: #fff !important;
+  background: none !important;
+  text-decoration: underline !important;
 }
 
 body.dark-mode .pasaje,
