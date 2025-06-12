@@ -97,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
       };
     }
     // Actualiza total en resumen, por si era incorrecto
-    resumen.total = formatearPrecio(total - cupDescuento);
+    resumen.total = total - cupDescuento;
+    resumen.totalFormateado = formatearPrecio(total - cupDescuento);
     localStorage.setItem("resumenCompra", JSON.stringify(resumen));
   }
 

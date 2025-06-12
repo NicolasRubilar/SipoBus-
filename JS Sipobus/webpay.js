@@ -109,6 +109,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
       procesandoDiv.style.display = 'none';
+      // Guardar viaje en el usuario logueado
+      let user = JSON.parse(localStorage.getItem('userLogueado'));
+      if (user) {
+        if (!user.viajes) user.viajes = [];
+        // Estructura del viaje
+        user.viajes.push({
+          origen: resumen.origen,
+          destino: resumen.destino,
+          fecha: resumen.fecha,
+          hora: resumen.hora,
+          asientos: resumen.asientos,
+          comida: resumen.comida,
+          total: resumen.total, // número
+          totalFormateado: resumen.totalFormateado // string formateado
+        });
+        localStorage.setItem('userLogueado', JSON.stringify(user));
+        localStorage.setItem('userProfile', JSON.stringify(user));
+      }
       alert('¡Pago exitoso! Gracias por tu compra en SipoBus.');
       window.location.href = 'simular_pago.html';
     }, 3000);

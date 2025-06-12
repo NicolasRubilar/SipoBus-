@@ -67,10 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     // Simulación de origen/destino/fecha/hora
+    const hoy = new Date();
+    const fechaISO = hoy.toISOString().split('T')[0]; // YYYY-MM-DD
     const resumen = {
       origen: "Santiago",
       destino: "Valparaíso",
-      fecha: new Date().toLocaleDateString(),
+      fecha: fechaISO,
       hora: "10:00",
       asientos: seleccionados,
       comida: comidaCheckbox.checked

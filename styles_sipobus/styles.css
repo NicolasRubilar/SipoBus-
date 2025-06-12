@@ -505,6 +505,7 @@ body.dark-mode p,
 body.dark-mode span,
 body.dark-mode label,
 body.dark-mode .destino p,
+body.dark-mode .frase-empresa,
 body.dark-mode .pasaje h3 {
   color: #ddd !important;
 }
@@ -584,4 +585,10 @@ body:not(.dark-mode) #toggle-modo {
 body.dark-mode #toggle-modo {
   background-color: #34495e;
   background-image: url('data:image/svg+xml;utf8,<svg fill="%23f1c40f" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>');
+}
+
+/* Modo oscuro: saludo header */
+body.dark-mode #bienvenida-header {
+  background: #232940 !important;
+  color: #aad4ff !important;
 }

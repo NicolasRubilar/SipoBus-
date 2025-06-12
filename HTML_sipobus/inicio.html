@@ -9,26 +9,31 @@
 </head>
 <body>
     <header>
-        
     <div class="contenedor-header">
         <h1 class="titulo-sipobus">SipoBus</h1>
-        <nav>
-        <a href="crear_usuario.html">Iniciar sesión</a>
-        <a href="seleccion_asiento_y_comida.html">Selecciona asientos</a>
-        <a href="cambiar_pasaje.html">Cambiar pasaje</a>
-        <a href="anular_pasaje.html ">Anular pasaje</a>
-        <a href="cupones.html">Cupones</a>
-        <a href="contacto.html">Contacto</a>
+        <nav id="nav-principal" style="flex:1;display:flex;align-items:center;justify-content:flex-end;gap:0.7rem;">
+            <span id="bienvenida-header" style="display:none;font-weight:600;font-size:1.08rem;background:#e6f0fa;color:#1e1e2f;padding:0.3rem 1rem;border-radius:8px;"></span>
+            <a href="perfil.html" id="link-perfil" style="display:none;">Mi perfil</a>
+            <a href="#" id="cerrarSesion" style="display:none;">Cerrar sesión</a>
+            <a href="crear_usuario.html" id="link-iniciar-sesion">Iniciar sesión</a>
+            <a href="seleccion_asiento_y_comida.html">Selecciona asientos</a>
+            <a href="cambiar_pasaje.html">Cambiar pasaje</a>
+            <a href="anular_pasaje.html">Anular pasaje</a>
+            <a href="cupones.html">Cupones</a>
+            <a href="contacto.html">Contacto</a>
         </nav>
     </div>
     </header>
 
 <main>
-    <button id="toggle-modo" aria-label="Alternar modo oscuro" title="Alternar modo oscuro"></button>
+    <button id="toggle-modo" aria-label="Cambiar modo claro/oscuro" title="Alternar modo oscuro"></button>
+
+    <div class="frase-empresa" style="text-align:center;margin:1.5rem 0 2rem 0;font-size:1.25rem;font-weight:500;color:#1e1e2f;">
+        "Recorriendo Chile contigo, kilómetro a kilómetro."
+    </div>
 
     <section class="intro">
-        <h2 id="bienvenida-usuario">Recorriendo Chile contigo, kilómetro a kilómetro.</h2>
-        <button id="btnIrPerfil" class="btn-banner" style="margin-top:1.5rem;display:inline-block;">Ir a mi perfil</button>
+        <!-- Sin bienvenida ni botón de perfil aquí -->
     </section>
 
     <section id="Menu">
@@ -139,25 +144,34 @@
 </footer>
 <script src="../JS Sipobus/inicio.js"></script>
 <script>
-// Mensaje de bienvenida y atajo a perfil
-const userLog = localStorage.getItem('userLogueado');
-const bienvenida = document.getElementById('bienvenida-usuario');
-const btnIrPerfil = document.getElementById('btnIrPerfil');
-if(userLog) {
-    const user = JSON.parse(userLog);
-    if(bienvenida && user.nombre) {
-        bienvenida.textContent = `¡Bienvenido, ${user.nombre}!`;
+// Lógica de header dinámico
+(function(){
+    const userLog = localStorage.getItem('userLogueado');
+    const linkSesion = document.getElementById('link-iniciar-sesion');
+    const bienvenidaHeader = document.getElementById('bienvenida-header');
+    const linkPerfil = document.getElementById('link-perfil');
+    const cerrarSesion = document.getElementById('cerrarSesion');
+    if(userLog) {
+        const user = JSON.parse(userLog);
+        if(bienvenidaHeader) {
+            bienvenidaHeader.textContent = `Bienvenido, ${user.nombre}`;
+            bienvenidaHeader.style.display = 'inline-block';
+        }
+        if(linkSesion) linkSesion.style.display = 'none';
+        if(linkPerfil) linkPerfil.style.display = 'inline-block';
+        if(cerrarSesion) cerrarSesion.style.display = 'inline-block';
+        cerrarSesion.onclick = function(e) {
+            e.preventDefault();
+            localStorage.removeItem('userLogueado');
+            window.location.reload();
+        };
+    } else {
+        if(bienvenidaHeader) bienvenidaHeader.style.display = 'none';
+        if(linkSesion) linkSesion.style.display = 'inline-block';
+        if(linkPerfil) linkPerfil.style.display = 'none';
+        if(cerrarSesion) cerrarSesion.style.display = 'none';
     }
-    btnIrPerfil.onclick = function() {
-        window.location.href = 'perfil.html';
-    };
-    btnIrPerfil.textContent = 'Ir a mi perfil';
-} else {
-    btnIrPerfil.onclick = function() {
-        window.location.href = 'crear_usuario.html';
-    };
-    btnIrPerfil.textContent = 'Crea tu usuario';
-}
+})();
 </script>
 </body>
 </html>
